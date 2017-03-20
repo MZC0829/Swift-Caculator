@@ -22,7 +22,6 @@
 		BFD4082F1E74E5D4000463C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD408321E74E5D4000463C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD408341E74E5D4000463C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFDFAD7A1E769F470069FF5F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +56,6 @@
 			children = (
 				BFD408281E74E5D4000463C9 /* AppDelegate.swift */,
 				BFD4082A1E74E5D4000463C9 /* ViewController.swift */,
-				BFDFAD7A1E769F470069FF5F /* MyPlayground.playground */,
 				BFD4082C1E74E5D4000463C9 /* Main.storyboard */,
 				BFD4082F1E74E5D4000463C9 /* Assets.xcassets */,
 				BFD408311E74E5D4000463C9 /* LaunchScreen.storyboard */,

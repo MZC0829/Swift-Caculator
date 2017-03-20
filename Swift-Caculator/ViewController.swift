@@ -33,8 +33,8 @@ class ViewController: UIViewController
     
     var resultString:String = "0" //lblShow显示的内容
     var howManyPoint:Int = 0      //小数点的数量
-    var firstNumber:Float = 0        //第一个数
-    var result:Float = 0             //结果
+    var firstNumber:Double = 0        //第一个数
+    var result:Double = 0             //结果
     var operatorString:String = ""   //运算符(+ - * /)
     var flag:Int = 0           //flag判断是否点击了运算符号，0(没点)，1(点了)
     
@@ -319,6 +319,7 @@ class ViewController: UIViewController
     // MARK: 按键 0,1,2,3,4,5,6,7,8,9的事件,参数number为按键的数字
     func funcBtnNumber(number:Int)
     {
+        funcLblShowLength()
         if flag == 1
         {
             lblShow.text = resultString
@@ -411,16 +412,16 @@ class ViewController: UIViewController
         resultString = "0"
         self.lblShow.text = resultString
         howManyPoint = 0
+        funcLblShowLength()
     }
     
     // MARK: 按键Reverse事件,取反
     func funcBtnReverse()
     {
-        var tempValue = (Float)(lblShow.text!)
+        var tempValue = (Double)(lblShow.text!)
         tempValue = tempValue! * (-1.0)
-        lblShow.text = String(tempValue!)
         
-        if( tempValue == Float(String(Int(tempValue!))))
+        if(tempValue == Double(String(Int(tempValue!))))
         {
             lblShow.text = String(Int(tempValue!))
         }
@@ -435,7 +436,7 @@ class ViewController: UIViewController
     // MARK: 按键 % 事件,在数字后面加上%，然后用小数表示
     func funcBtnPercent()
     {
-        let tempValue = (Float)(lblShow.text!)
+        let tempValue = (Double)(lblShow.text!)
         lblShow.text = String(tempValue! / 100)
         funcLblShowLength()
     }
@@ -443,20 +444,28 @@ class ViewController: UIViewController
     // MARK: 判断字符长度，控制字体大小
     func funcLblShowLength()
     {
-        if ((lblShow.text?.characters.count)! > 9)
+        if ((lblShow.text?.characters.count)! > 11)
+        {
+            lblShow.font = UIFont.systemFont(ofSize: 40)
+        }
+        else if ((lblShow.text?.characters.count)! >= 10)
+        {
+            lblShow.font = UIFont.systemFont(ofSize: 50)
+        }
+        else if ((lblShow.text?.characters.count)! > 9)
         {
             lblShow.font = UIFont.systemFont(ofSize: 60)
         }
         else
-       {
+        {
             lblShow.font = UIFont.systemFont(ofSize: 68)
-       }
+        }
     }
     
     // MARK: 按键 + 事件(加法)
     func funcBtnAdd()
     {
-        firstNumber = Float(lblShow.text!)!
+        firstNumber = Double(lblShow.text!)!
         operatorString = "+"
         funcReturnFlag()
     }
@@ -464,7 +473,7 @@ class ViewController: UIViewController
     // MARK: 按键 - 事件(减法)
     func funcBtnSubtraction()
     {
-        firstNumber = Float(lblShow.text!)!
+        firstNumber = Double(lblShow.text!)!
         operatorString = "-"
         funcReturnFlag()
     }
@@ -472,7 +481,7 @@ class ViewController: UIViewController
     // MARK: 按键 X 事件(乘法)
     func funcBtnMultiplication()
     {
-        firstNumber = Float(lblShow.text!)!
+        firstNumber = Double(lblShow.text!)!
         operatorString = "X"
         funcReturnFlag()
     }
@@ -480,7 +489,7 @@ class ViewController: UIViewController
     // MARK: 按键 ÷ 事件(减法)
     func funcBtnDivision()
     {
-        firstNumber = Float(lblShow.text!)!
+        firstNumber = Double(lblShow.text!)!
         operatorString = "÷"
         funcReturnFlag()
     }
@@ -500,15 +509,15 @@ class ViewController: UIViewController
         {
         
         case "+":
-            result = firstNumber + Float(lblShow.text!)!
+            result = firstNumber + Double(lblShow.text!)!
             funcDeletePointZero()
             
         case "-":
-            result = firstNumber - Float(lblShow.text!)!
+            result = firstNumber - Double(lblShow.text!)!
             funcDeletePointZero()
             
         case "X":
-            result = firstNumber * Float(lblShow.text!)!
+            result = firstNumber * Double(lblShow.text!)!
             funcDeletePointZero()
             
         case "÷":
@@ -518,21 +527,21 @@ class ViewController: UIViewController
             }
             else
             {
-                result = firstNumber / Float(lblShow.text!)!
+                result = firstNumber / Double(lblShow.text!)!
                 funcDeletePointZero()
             }
                 
         default:
             break
         }
-        
+        funcLblShowLength()
         funcReturnFlag()
     }
     
     // MARK: 把小数点后面没有的 0 去掉(如:结果为2.0则显示2；结果为2.4还是显示2.4)
     func funcDeletePointZero()
     {
-        if(result == Float(String(Int(result))))
+        if(result == Double(String(Int(result))))
         {
             lblShow.text = String(Int(result))
         }
